@@ -1,59 +1,9 @@
 fileFormatVersion: 2
-guid: 75b74e55e2afbd6029c90ac83e0b70f7
+guid: 30f50b36b9e09c23c9b8bd5f045fdb07
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 57d27eb95439c45048e06279e40f2e01, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: body
-    second: {fileID: 2100000, guid: 494000464aabb9edbafb24ba0f432e36, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: building
-    second: {fileID: 2100000, guid: 8c0db74b0f3ef0c468aed1e1576185b2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: building roof
-    second: {fileID: 2100000, guid: 7882aeeb0a6fbee04b481e308d83190e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cannon body
-    second: {fileID: 2100000, guid: d7a5d282dc2f2157f9024d43458d3799, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cannon wheel
-    second: {fileID: 2100000, guid: 480aeac368ee6a045a84d8ce616e1e3f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: flag-my-logo
-    second: {fileID: 2100000, guid: c3a1dbf4224c4da36ab2189dd5860ba6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lifebuoy
-    second: {fileID: 2100000, guid: f41a4c6333cfef33d90bef4dca2093fb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lifebuoy.001
-    second: {fileID: 2100000, guid: e9852bcfba210bb1bbf52698d60e7d64, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sails
-    second: {fileID: 2100000, guid: 9db6bf83b79444d9abe55ff641b13e7a, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
