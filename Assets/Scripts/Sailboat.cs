@@ -14,6 +14,7 @@ public class Sailboat : MonoBehaviour
     public TerrainGenerator terrainGenerator;
     public MainCamera mainCamera;
     public MainWindZone mainWindZone;
+    public GameObject mainPanel;
     public GameObject mainText;
     public GameObject statusText;
 
@@ -33,13 +34,15 @@ public class Sailboat : MonoBehaviour
 
         if (!alive) return;
 
-        if (Input.GetButton("Jump"))
+        bool inputDown = Input.touchCount > 0 || Input.GetButton("Jump");
+
+        if (inputDown)
         {
             if (!started && mainCamera != null)
             {
                 started = true;
                 mainCamera.enabled = true;
-                mainText.GetComponent<Text>().text = "";
+                mainPanel.SetActive(false);
                 animator.SetBool("started", true);
             }
 
@@ -49,7 +52,7 @@ public class Sailboat : MonoBehaviour
 
         if (started)
         {
-            animator.SetBool("sailing", Input.GetButton("Jump"));
+            animator.SetBool("sailing", inputDown);
 
             int newScore = (int) (transform.position.z * 10.0f);
             if (newScore > score)
@@ -69,5 +72,6 @@ public class Sailboat : MonoBehaviour
     {
         alive = false;
         mainText.GetComponent<Text>().text = $"Game Over\nYour score: {score}";
+        mainPanel.SetActive(true);
     }
 }
