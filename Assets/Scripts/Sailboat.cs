@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Sailboat : MonoBehaviour
 {
-    public float force = 10.0f;
+    //public float force = 10.0f;
     public float floatingYBase = 0.8f;
     public float floatingYScale = 2.4f;
     public Animator animator;
@@ -30,9 +30,13 @@ public class Sailboat : MonoBehaviour
 
     void Update()
     {
-        rigidbodyCom.AddForce(Physics.gravity * -Mathf.Clamp(floatingYBase - floatingYScale * transform.position.y, 0, 1));
+        if (!alive)
+        {
+            rigidbodyCom.AddForce(Physics.gravity * -Mathf.Clamp(transform.position.y, 0, 1));
+            return;
+        }
 
-        if (!alive) return;
+        rigidbodyCom.AddForce(Physics.gravity * -Mathf.Clamp(floatingYBase - floatingYScale * transform.position.y, 0, 1));
 
         bool inputDown = Input.touchCount > 0 || Input.GetButton("Jump");
 
