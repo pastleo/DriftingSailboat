@@ -6,9 +6,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Sailboat : MonoBehaviour
 {
-    public float force = 10.0f;
     public float floatingYBase = 0.8f;
     public float floatingYScale = 2.4f;
+    public float sinkAfterHit = 5.0f;
+    public float sinkDuration = 55.0f;
+    public float sinkExponent = 4.0f;
+
     public Animator animator;
 
     public TerrainGenerator terrainGenerator;
@@ -21,6 +24,7 @@ public class Sailboat : MonoBehaviour
     Rigidbody rigidbodyCom;
     bool started = false;
     bool alive = true;
+    float hitTime;
     int score = 0;
 
     void Start()
@@ -28,10 +32,19 @@ public class Sailboat : MonoBehaviour
         rigidbodyCom = GetComponent<Rigidbody>();
     }
 
+    void FixedUpdate()
+    {
+        Vector3 floatForce = Physics.gravity * -Mathf.Clamp(floatingYScale * (floatingYBase - transform.position.y), 0, 1);
+        if (alive) {
+            rigidbodyCom.AddForce(floatForce);
+        } else {
+            float effective = 1.0f - Mathf.Pow(Mathf.Clamp((Time.time - hitTime - sinkAfterHit) / sinkDuration, 0, 1), sinkExponent);
+            rigidbodyCom.AddForce(floatForce * effective);
+        }
+    }
+
     void Update()
     {
-        rigidbodyCom.AddForce(Physics.gravity * -Mathf.Clamp(floatingYBase - floatingYScale * transform.position.y, 0, 1));
-
         if (!alive) return;
 
         bool inputDown = Input.touchCount > 0 || Input.GetButton("Jump");
@@ -70,8 +83,11 @@ public class Sailboat : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        alive = false;
-        mainText.GetComponent<Text>().text = $"Game Over\nYour score: {score}";
-        mainPanel.SetActive(true);
+        if (alive) {
+            alive = false;
+            hitTime = Time.time;
+            mainText.GetComponent<Text>().text = $"Game Over\nYour score: {score}";
+            mainPanel.SetActive(true);
+        }
     }
 }
