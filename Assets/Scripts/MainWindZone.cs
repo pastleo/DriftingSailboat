@@ -9,8 +9,8 @@ public class MainWindZone : MonoBehaviour
     public float directionMaxBias = 45.0f;
     public float directionToCenterScale = 1.2f;
     public float strengthChanging = 1.0f;
-    public float strengthMax = 10.0f;
-    public float windPointerStrengthScale = 0.25f;
+    public float strengthMax = 20.0f;
+    public float windPointerStrengthScale = 0.125f;
 
     public GameObject sailboat;
     public GameObject windPointer;

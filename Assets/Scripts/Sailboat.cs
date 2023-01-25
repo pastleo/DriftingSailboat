@@ -40,16 +40,11 @@ public class Sailboat : MonoBehaviour
         } else {
             float effective = 1.0f - Mathf.Pow(Mathf.Clamp((Time.time - hitTime - sinkAfterHit) / sinkDuration, 0, 1), sinkExponent);
             rigidbodyCom.AddForce(floatForce * effective);
+
+            return;
         }
-    }
 
-    void Update()
-    {
-        if (!alive) return;
-
-        bool inputDown = Input.touchCount > 0 || Input.GetButton("Jump");
-
-        if (inputDown)
+        if (Input.touchCount > 0 || Input.GetButton("Jump"))
         {
             if (!started && mainCamera != null)
             {
@@ -62,10 +57,13 @@ public class Sailboat : MonoBehaviour
             var windVector = mainWindZone.GetWindVector();
             rigidbodyCom.AddForce(windVector);
         }
+    }
 
-        if (started)
+    void Update()
+    {
+        if (started && alive)
         {
-            animator.SetBool("sailing", inputDown);
+            animator.SetBool("sailing", Input.touchCount > 0 || Input.GetButton("Jump"));
 
             int newScore = (int) (transform.position.z * 10.0f);
             if (newScore > score)
